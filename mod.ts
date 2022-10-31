@@ -21,7 +21,7 @@ export function compose<Handler extends BaseHandler>(
   handler: Handler,
   ...wrappers: Wrapper<Handler>[]
 ): Wrapped<Handler> {
-  return wrappers.reduce(
+  return wrappers.reduce<Wrapped<Handler>>(
     wrap,
     async (...args: Parameters<Handler>) => await handler(...args),
   );
